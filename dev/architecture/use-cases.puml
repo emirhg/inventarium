@@ -1,0 +1,42 @@
+@startuml
+actor User
+
+rectangle Inventario {
+  usecase AddItem as "Add item"
+  usecase NewItem as "Submit new item"
+  usecase ExtractItem as "Extract item"
+  usecase ExtractPartialItem as "Extract partial item"
+  usecase SearchItem as "Search Item"
+
+  (SearchItem) -|> (NewItem)
+
+}
+
+rectangle Scanner {
+  usecase Scan as "Scan barcode"
+  usecase SearchPattern as "Search matching pattern"
+  usecase NewPattern as "Submit new Pattern"
+
+  (Scan) --|> (SearchPattern)
+  (SearchPattern) --|> (NewPattern)
+}
+
+rectangle Catalog {
+  usecase NewProduct as "Submit new Product"
+  usecase SearchProduct as "Search product"
+  (SearchProduct) --|> (NewProduct)
+}
+
+(SearchItem) --|> (SearchProduct)
+
+
+(ExtractItem) --|> (SearchItem)
+(ExtractPartialItem) --|> (SearchItem)
+(AddItem) --|> (SearchItem)
+(SearchItem) --|> (Scan)
+
+User --> (AddItem)
+User --> (ExtractItem)
+User --> (ExtractPartialItem)
+
+@enduml
