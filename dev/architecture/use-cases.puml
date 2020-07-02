@@ -1,42 +1,87 @@
 @startuml
-actor User
+actor "Almacenista" as storer <<Humano>>
+' actor "Almacen" as store <<Humano>>
+' actor "Gerente" as manager <<Humano>>
+' actor "Cliente" as client <<Humano>>
+' actor "Guardia" as guard <<Humano>>
 
-rectangle Inventario {
-  usecase AddItem as "Add item"
-  usecase NewItem as "Submit new item"
-  usecase ExtractItem as "Extract item"
-  usecase ExtractPartialItem as "Extract partial item"
-  usecase SearchItem as "Search Item"
+actor "Producto" as product <<Objeto Inanimado>>
 
-  (SearchItem) -|> (NewItem)
+rectangle "Aplicación mobil"{
+  actor db as  "Almacenamiento del sistema" <<Sistema>>
+  usecase addItemIntoInventory as "Agregar artículo a la lista"
+  'usecase removeItem as "Registrar extracción de artículo a inventario"
 
+' usecase newContainer as "Crear nuevo contenedor\nde inventario"
+' usecase getTransaction as "Consulter movimientos de un artículo"
+' usecase moveItem as "Mover un artículo entre contenedores"
+' usecase listItems as "Consultar inventario"
+
+'  usecase searchByContainer as "Buscar por contenedor"
+
+  rectangle "Catálogo" {
+    usecase newProduct as "Registrar nuevo producto"
+    'usecase searchByVendor as "Buscar por marca"
+    'usecase searchBySerial as "Buscar por número de serie"
+    usecase searchProductByBarcodeTags as "Buscar producto por código de barras"
+    'usecase searchByModel as "Buscar por modelo"
+    'usecase getProduct as "Consultar las especificaciones de un producto"
+    'usecase newProductSheet as "Registrar un nuevo producto\ny su ficha técnica en el catálogo"
+
+    (newProduct) --> db
+    (searchProductByBarcodeTags) --> db
+  }
+
+  rectangle Scanner {
+    usecase scanBarcode as "Leer código de barra"
+    usecase newPattern as "Agregar nuevo patrón de identificación"
+    usecase searchPattern as "Buscar patrón de identificaión coincidente"
+
+    (scanBarcode) --> (searchPattern)
+    (scanBarcode) --> (newPattern)
+
+    (scanBarcode) -----> product
+    (newPattern) ---> db
+    (searchPattern) ---> db
+  }
+
+  rectangle "Servicio para control de inventario" {
+    'usecase newContainerOnService as "Registrar un nuevo contenedor"
+    'usecase getTransactionHistory as "Consultar el historial\nde movimientos de un atículo"
+    'usecase listArticles as "Listar productos en contenedores"
+    'usecase moveItemToAnotherContainer as "Registrar un traspaso de productos entre contenedores"
+    'usecase searchItem as "Buscar existencias de\nproducto en el inventario"
+    usecase newItem as "Registrar nuevo artículo en el inventario"
+    'usecase takeItem as "Registrar salida de producto al inventario"
+    'usecase extractPartialItem as "Extrar contenido parcial de un artículo"
+
+    (newItem) --> db
+  }
 }
 
-rectangle Scanner {
-  usecase Scan as "Scan barcode"
-  usecase SearchPattern as "Search matching pattern"
-  usecase NewPattern as "Submit new Pattern"
 
-  (Scan) --|> (SearchPattern)
-  (SearchPattern) --|> (NewPattern)
-}
+'rectangle "Autenticación"{
+'  usecase newUser as "Registrar nuevo usuario"
+'}
+'
+'rectangle "Autorización" {
+'  usecase editUser as "Modificar rol de usuario"
+'  usecase login as "Iniciar sesión"
+'  usecase logout as "Cerrar sesión"
+'}
+'
+'rectangle "Servicio para control de acceso" {
+'  usecase newUser as "Crear nuevo usuario"
+'  usecase setAdmin as "Asignar rol "Administrador" a usuario"
+'  usecase revokeAdmin as "Revocar rol "Administrador" a usuario"
+'  usecase getToken as "Emitir token de acceso"
+'  usecase removeToken as "Revocar token de acceso"
+'}
 
-rectangle Catalog {
-  usecase NewProduct as "Submit new Product"
-  usecase SearchProduct as "Search product"
-  (SearchProduct) --|> (NewProduct)
-}
+storer --> (addItemIntoInventory)
 
-(SearchItem) --|> (SearchProduct)
-
-
-(ExtractItem) --|> (SearchItem)
-(ExtractPartialItem) --|> (SearchItem)
-(AddItem) --|> (SearchItem)
-(SearchItem) --|> (Scan)
-
-User --> (AddItem)
-User --> (ExtractItem)
-User --> (ExtractPartialItem)
+(addItemIntoInventory) --> (scanBarcode)
+(addItemIntoInventory) --> (searchProductByBarcodeTags)
+(addItemIntoInventory) --> (newItem)
 
 @enduml

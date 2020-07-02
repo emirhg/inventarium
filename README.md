@@ -1,4 +1,4 @@
 # Inventarium
 Lista de objetos disponibles.
 
-![](./dev/useCase.png "Diagrama de casos de uso")
+![](./dev/architecture/use-cases.png "Diagrama de casos de uso")
