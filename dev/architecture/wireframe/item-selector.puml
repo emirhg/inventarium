@@ -1,0 +1,25 @@
+@startsalt
+{+ {[<&tag> Scan] | Mistery Box}
+  {<size:30><&arrow-thick-left>|
+  <size:30><&arrow-thick-right>}
+
+  {^"Details"
+    This item is perfect to make stuff.
+    People that love doing stuff would
+    absolutly love this!
+    .
+    .
+  }
+  {<size:360><&image>}
+
+  {^"Market"
+    Price | "$99.99"
+  }
+  {^"Tags"
+    UPC | "750111111111"
+  }
+
+  {<size:30><&minus> |   "<size:30>01 "   |<size:30><&plus>}
+  {[ Add <&basket>]}
+}
+@endsalt

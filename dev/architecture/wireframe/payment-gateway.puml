@@ -1,0 +1,10 @@
+@startsalt
+{^"Payment Gateway"
+  {^Credit Card
+    Card Holder | "Juan Nepomuceno cortina"
+    Visa/Mastercard | {"0000" | "0000" | "0000" |  "0000" }
+    Expiration Date | {"2026" | "12" }
+  }
+  {[Pay]}
+}
+@endsalt

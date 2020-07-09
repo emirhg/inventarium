@@ -1,0 +1,53 @@
+@startsalt
+{+ { ^Main inventory^ | [Share <&share>]}
+
+  {This inventory holds a total of 3 items}
+  {#
+     Product   | Quantity | Total content
+     {T
+       + Magic box
+       ++Magic box
+       ++Magic box
+       ++Magic box
+       } |   {T
+         +3
+         ++1
+         ++1
+         ++1}      | {T
+           +3 devices
+           ++ 1 device
+           ++ 1 device
+           ++ 1 device
+         }
+
+  }
+
+}
+@endsalt
+
+@startsalt
+{^"Shoping Cart"
+  {[<&tags> Start scanner]}
+  {#
+     Product   | Quantity | Unit Price | Total Price
+     {T
+       + Awesome Product Pack
+       ++Awesome Item
+       ++Awesome Item
+       } |   {T
+         +2
+         ++1
+         ++1}      | {T
+           +500 gr
+           ++ 250 gr
+           ++ 250 gr
+         } | {T
+           + ($99.99)
+           ++ $49.99
+           ++ $49.99
+         }
+    Total|.|.|$99.99
+    Payment|.|.| {[Checkout] | / | <&check> Payed}
+  }
+}
+@endsalt

@@ -1,0 +1,75 @@
+@startsalt
+{^"Submit"
+  {
+    Source | ^lost+found^
+    Destiny | ^Current location^
+  }
+  .
+  {
+    { ^Network Device^ }
+    { Description | "Auto completed description" }
+  }
+  {^"Tags"
+    UPC | "000111111111"
+    Part Number | "P00000"
+    Serial Number | "S1234567890"
+  }
+  {<size:360><&image>}
+  {<size:30><&arrow-thick-left>|
+    {.|<size:30><&trash>|<size:30><&camera-slr>|.}|
+  <size:30><&arrow-thick-right>}
+  {^"Specifications"
+    Vendor | ^Big Tech Companny^
+    Model | ^4W3S3M3-T4X0N0M1^
+    Device | "CODE-NAME-0001"
+    MCode | "0000-00000"
+    F/W Ver, | "V1.000.00RC1"
+    H/W Ver, | "V1.000.00RC1"
+  }
+  {^"Details"
+    This item is perfect to make stuff.
+    People that love doing stuff would
+    absolutly love this!
+    .
+    .
+  }
+  {<size:30><&minus> |   "<size:30>01 "   |<size:30><&plus>}
+  {[Submit item]}
+}
+@endsalt
+
+@startsalt
+{^"Submit Product"
+  .
+  {
+    Source | ^lost+found^
+    Destiny | ^Current location^
+  }
+  .
+  { Description | "Auto completed description" }
+
+  {^"Tags"
+    UPC | "750111111111"
+  }
+  {<size:360><&image>}
+  {<size:60><&arrow-thick-left>|
+    {.|<size:60><&trash>|<size:60><&camera-slr>|.}|
+  <size:60><&arrow-thick-right>}
+
+  {^"Market"
+    Ask price | "$99.99"
+    Bid price | "$     "
+    Expected profit | N/A
+  }
+  {^"Details"
+    This item is perfect to make stuff.
+    People that love doing stuff would
+    absolutly love this!
+    .
+    .
+  }
+
+  {<size:30><&minus> |   "<size:30>01 "   |<size:30><&plus>}
+  {[Submit item]}
+}
+@endsalt
