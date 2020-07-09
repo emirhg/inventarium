@@ -1,0 +1,221 @@
+@startuml
+
+  rectangle Authentication{
+
+    entity "Profile" as profile {
+      * id: number
+      --
+      * full_name: string
+      * email: string
+    }
+
+    entity "Host" as host {
+      * id: number
+      --
+      * user_id: number
+      * ip: string
+      hostname: string
+      first_login: timestamp
+      last_login: timestamp
+    }
+
+    entity "User" as user {
+      * id: number
+      --
+      * username: string
+      * domain: string
+      * active: boolean
+    }
+
+    entity "Password" as password {
+      * id: number
+      --
+      * user_id: number
+      * shadowed_password: string
+      * created_at: date
+      * expires_at: date
+    }
+
+    user ||--o| profile
+    user ||--o{ host
+    user ||--o| password
+  }
+
+  rectangle "Authorization (OAuth2)" {
+    entity "Role" as role {
+      * id: number
+      --
+      * name: string
+    }
+
+    entity "Grant" as grant {
+      * id: number
+      --
+      * role_id: number
+      * scope: string
+      * method: string
+      * grant: boolean
+    }
+
+    entity "Access" as access {
+      * id: number
+      --
+      * role_id: number
+      * user_id: number
+    }
+
+    role }|-|{ access
+  }
+
+  access --|> user : <<uses>>
+
+  rectangle Market{
+    entity "Position" as position{
+      * id: number
+      --
+      * item_id: number
+      * user_id: number
+      * status: string
+      * created_at: timestamp
+      * updated_at: timestamp
+      ask:  number
+      bid: number
+    }
+
+    entity "Basket" as basket {
+      * id: number
+      --
+      * user_id: number
+      * position_id: number
+      *
+    }
+  }
+
+  rectangle Catalog #lightyellow {
+    entity "Attachments" as attachments {
+      * id: number
+      --
+      * mime-type: string
+      * value: HEX
+    }
+
+    entity "Product" as product {
+      * id: number
+      --
+      featuredAttachmentId: number <FK>
+      barcodes: Array<Barcode>
+    }
+
+    entity "Specifications" as specifications {
+      product_id: number
+      specification_name: string
+      specification_id: number
+    }
+
+    product ||--o| specifications
+    product ||--o{ attachments
+  }
+
+  rectangle NetworkCatalog {
+    entity "NetworkDeviceSpecifications" as networkDeviceSpecifications {
+      * id: number
+      --
+      * name: string
+      vendor: string
+      model: string
+      serial_number: string
+      m_code: string
+      part_number: string
+      mac_address: string
+      firmware_version: string
+      hardware_version: string
+    }
+    specifications --|> networkDeviceSpecifications : <<uses>>
+  }
+
+  rectangle "FoodCatalog" #lightgrey {
+    entity "nutritionSpecifications" as nutritionSpecifications{
+      name: string
+      portion: number
+      portion_units: string
+      kcal: number
+      glucemic_index: number
+      daily_recomended_portions: number
+    }
+    specifications --|> nutritionSpecifications : <<uses>>
+  }
+
+  rectangle LibraryCatalog #lightgrey {
+    entity "BookSpecifications" as bookSpecifications {
+      * id: number
+      --
+      * title: string
+      editorial: string
+      isbn: string
+      author: string
+      pages: number
+    }
+    specifications --|> bookSpecifications : <<uses>>
+  }
+
+  rectangle Warehouse #lightyellow{
+    entity "Transaction" as transaction {
+      input: Item | Container
+      output: Container
+      item_id: number
+      user_id: number
+    }
+
+    entity "Container" as container {
+      * id: number
+      --
+      * name: string
+      latitude: number
+      longitude: number
+      holder: Container
+    }
+
+    container ||--|{ container
+
+    entity "Item" as item {
+      * id: number
+      --
+      * description: string
+      barcodes: Array<Barcode>
+      longitude: number
+    }
+
+    transaction }|--|| container
+    transaction }|--|| item
+
+  }
+
+  rectangle Scanner #lightyellow {
+    entity "Tag" as tag {
+      * id: number
+      --
+      * name: string
+      * format: string
+      * pattern: string
+    }
+
+    entity "Barcode" as barcode {
+      * id: number
+      --
+      * tag_id
+      * format: string
+      * text: string
+    }
+
+    barcode }|--|| tag
+  }
+
+  item --|> product : <<extends>>
+
+  item --|> barcode : <<uses>>
+  product --|> barcode : <<uses>>
+
+  basket --|> item : <<uses>>
+  position --|> item : <<uses>>
+
+@enduml
