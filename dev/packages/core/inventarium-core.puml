@@ -1,0 +1,16 @@
+@startuml
+package "@inventarium/core" as inventariumCorePackage {
+  package @inventarium/pages {}
+  package @inventarium/services {
+    package @inventarum/storage {}
+  }
+  package @inventarium/catalog {}
+  package @inventarium/scanner {}
+  package @inventarium/inventory {}
+
+  class "InventariumService" as inventariumServiceClass <<NgModule>> { }
+  interface "InventariumService" as inventariumServiceInterface {}
+
+  inventariumServiceClass --|> inventariumServiceInterface
+}
+@enduml

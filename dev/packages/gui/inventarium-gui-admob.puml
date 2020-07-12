@@ -1,0 +1,8 @@
+@startuml
+
+package "@inventarium/gui-admob" as inventariumGuiAdmob {
+  !include ../core/inventarium-admob.puml
+  class "InventariumGuiAdmob" as inventariumGuiAdmobClass {}
+}
+
+@enduml

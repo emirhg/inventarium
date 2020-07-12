@@ -1,0 +1,8 @@
+@startuml
+package "@inventarium/gui-sequitur" as inventariumGuiSequiturPackage {
+  !include ../core/inventarium-sequitur.puml
+  package @inventarium/network-device-specifications {}
+
+  class "InventariumGuiSequitur" as inventariumGuiSequiturClass {}
+}
+@enduml

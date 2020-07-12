@@ -1,5 +1,4 @@
 @startuml
-
   rectangle Authentication{
 
     entity "Profile" as profile {
@@ -102,8 +101,10 @@
     entity "Product" as product {
       * id: number
       --
-      featuredAttachmentId: number <FK>
+      description: string
+      details: string
       barcodes: Array<Barcode>
+      featuredAttachmentId: number <FK>
     }
 
     entity "Specifications" as specifications {

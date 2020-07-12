@@ -1,0 +1,31 @@
+@startuml
+package "@ionic-native/admob" as ionicNativeAdmob {
+  class Admob {
+    setOptions(admobOptions: AdmobOptions)
+    createBannerView()
+    showBannerAd(destroyBannerView: boolean)
+    requestInterstitialAd() : Promise
+    requestRewardedAd(): Promise
+    destroyBannerView()
+    onAdLoaded() : Listener
+    onAdFailedToLoad(): Listener
+    onAdOpened(): Listener
+    onAdClosed(): Listener
+    onAdLeftApplication(): Listener
+    onRewardedAd(): Listener
+    onRewardedAdVideoStarted(): Listener
+    onRewardedAdVideoCompleted(): Listener
+  }
+
+  class AdmobOptions {
+    publisherId: 'XXX-XXXX-XXXX',
+    interstitialId: 'XXX-XXXX-XXXX',
+    rewardedAdId: 'XXX-XXXX-XXXX',
+    isTesting: true,
+    autoShowBanner: false,
+    autoShowInterstitial: false,
+    autoShowRewarded: false,
+    adSize: this.admob.AD_SIZE.BANNER
+  }
+}
+@enduml

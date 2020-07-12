@@ -1,0 +1,8 @@
+@startuml
+!include ../external/admob.puml
+
+package "@inventarium/admob" as inventariumAdmob {
+  class "InventariumAdmobService" as inventariumAdmobServiceClass {}
+}
+
+@enduml

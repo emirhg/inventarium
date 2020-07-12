@@ -1,0 +1,41 @@
+@startuml
+package "@inventarium/gui" as inventariumGuiPackage #lightgreen {
+  !include ../core/inventarium-core.puml
+  class AlertError <<Injectable, ErrorHandler>> {
+      + handleEror(error <<Error>)
+  }
+
+  object "NgModuleConfiguration" as inventariumGuiConfiguration {
+    + declarations = [AppComponent]
+    + entryComponents = ([] | Type<<any>>)[]
+    + imports = [
+      ReactiveFormsModule,
+      BrowserModule,
+      IonicModule.forRoot(),
+      AppRoutingModule,
+      NavigationListPageModule,
+      BrowserAnimationsModule,
+      MatDialogModule,
+    ]
+    + providers = [
+      StatusBar,
+      SplashScreen,
+      StorageService,
+      CommandBusService,
+      CameraPreview,
+      BarcodeScanner,
+      ScannerService,
+      ModalService,
+    ]
+  }
+
+
+  class "InventariumGui" as inventariumGuiClass <<NgModule>> {
+    - menu: <<MenuEntry[]>>
+    - routes
+    - contentPane
+
+  }
+
+}
+@enduml

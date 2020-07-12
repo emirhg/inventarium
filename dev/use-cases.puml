@@ -7,7 +7,7 @@ actor "Almacenista" as storer <<Humano>>
 
 actor "Producto" as product <<Objeto Inanimado>>
 
-rectangle "Aplicación mobil"{
+rectangle "Aplicación móvil"{
   actor db as  "Base de datos" <<Sistema>>
   usecase addItemIntoInventory as "Agregar artículo a la lista"
   'usecase removeItem as "Registrar extracción de artículo a inventario"

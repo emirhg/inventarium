@@ -1,0 +1,5 @@
+@startuml
+package "@inventarium/sequitur" as inventariumSequiturPackage {
+  class "InventariumSequiturService" as inventariumSequiturServiceClass {}
+}
+@enduml
