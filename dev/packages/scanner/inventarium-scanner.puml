@@ -1,0 +1,26 @@
+@startuml
+  package @inventarium/scanner #orange {
+    class "ScannerService" as scannerService {
+      
+    }
+    class "Tagged" as tagged {
+      + Barcode[] barcodes
+    }
+
+    class "Barcode" as barcode <<BaseEntity>> {
+      + BarcodeType format
+      + String text
+      + Tag tag
+    }
+
+    class "Tag" as tag <<BaseEntity>> {
+      + String name
+      + BarcodeType format
+      + SQLLikePattern pattern
+    }
+    note bottom of tag: SQLLikePattern reference\nhttps://www.w3schools.com/sql/sql_like.asp
+
+    tag <|-- barcode
+    barcode <|-- tagged
+  }
+@enduml
