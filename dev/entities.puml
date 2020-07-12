@@ -159,21 +159,19 @@
     specifications --|> bookSpecifications : <<uses>>
   }
 
-  rectangle Warehouse #lightyellow{
+  rectangle Computus #lightyellow{
     entity "Transaction" as transaction {
-      input: Item | Container
-      output: Container
+      input: Item | Holder
+      output: Holder
       item_id: number
       user_id: number
     }
 
-    entity "Container" as container {
+    entity "Holder" as container {
       * id: number
       --
       * name: string
-      latitude: number
-      longitude: number
-      holder: Container
+      holder: Holder
     }
 
     container ||--|{ container
@@ -183,7 +181,6 @@
       --
       * description: string
       barcodes: Array<Barcode>
-      longitude: number
     }
 
     transaction }|--|| container
