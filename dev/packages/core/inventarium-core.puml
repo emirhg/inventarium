@@ -1,16 +1,70 @@
 @startuml
+!include ../scanner/inventarium-scanner.puml
 package "@inventarium/core" as inventariumCorePackage {
   package @inventarium/pages {}
+
   package @inventarium/services {
     package @inventarum/storage {}
+    inventariumServiceClass --|> inventariumServiceInterface
   }
-  package @inventarium/catalog {}
-  package @inventarium/scanner {}
-  package @inventarium/inventory {}
+
+  package @inventarium/catalog {
+    package @basis{
+      class "Product" as product <<typeorm/BaseEntity>> {
+        + String name
+        --
+        + Tag[] tags {unique}
+        + String description
+      }
+      class "Specification" as spec {}
+
+      package @submitProductPage {
+        package locale {
+          package es_MX {}
+          package en_US {}
+        }
+        class ProductModule <<NgModule>> {}
+        class SubmitProductPage <<NgComponent, NgOnInit>> {}
+        class SubmitProductModalPage <<SubmitProductPage>> {}
+      }
+    }
+
+    package @pretium{
+
+    }
+
+    package @multum{
+
+    }
+  }
+  tagged <|-- product
+
+  package @inventarium/computus {
+    class "Item" as item {
+      + String description
+      + String details
+      + Barcode[] barcodes
+    }
+    class "Holder" as holder {
+      + String name
+      --
+      + Holder holder
+    }
+    class "Transaction" as transaction {
+      + Holder input
+      + Holder output
+      + User user
+      + Item item
+    }
+
+    tagged <|-- item
+    item o-- holder
+    item *- transaction
+    transaction --* holder
+  }
 
   class "InventariumService" as inventariumServiceClass <<NgModule>> { }
   interface "InventariumService" as inventariumServiceInterface {}
 
-  inventariumServiceClass --|> inventariumServiceInterface
 }
 @enduml
