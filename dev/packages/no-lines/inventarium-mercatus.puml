@@ -1,5 +1,6 @@
 @startuml
 package @inventarium/mercatus <<No-Lines>>{
+  !include ../entities/mercatus.puml
   class "Price" as price <<BaseEntity>> {
     + GUID id
     + Double value
