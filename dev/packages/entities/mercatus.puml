@@ -1,6 +1,5 @@
 @startuml
-
-  rectangle Market{
+  rectangle MercatusEntities{
     entity "Position" as position{
       * id: number
       --

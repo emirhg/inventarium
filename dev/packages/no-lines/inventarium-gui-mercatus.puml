@@ -1,0 +1,12 @@
+@startuml
+
+package "@inventarium/gui-mercatus" as inventariumGuiMercatus {
+  !include ../no-lines/inventarium-mercatus.puml
+  package @inventarium/mercatus {}
+  package @inventarium/payment-gateway {}
+
+  class "InventariumGuiMercatus" as inventariumGuiMercatusClass {}
+
+}
+
+@enduml

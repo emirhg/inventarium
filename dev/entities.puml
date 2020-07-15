@@ -1,7 +1,7 @@
 @startuml
   !include packages/entities/authentication.puml
   !include packages/entities/authorization.puml
-  !include packages/entities/market.puml
+  !include packages/entities/mercatus.puml
   !include packages/entities/catalog.puml
   !include packages/entities/network-catalog.puml
   !include packages/entities/library-catalog.puml

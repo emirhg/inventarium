@@ -2,30 +2,34 @@
 'Internal dependencies
 !include packages/scanner/inventarium-scanner.puml
 !include packages/catalog/inventarium-catalog.puml
+!include packages/catalog/inventarium-contentus.puml
+!include packages/core/forma.puml
+!include packages/no-lines/inventarium-mercatus.puml
 
 ' User interfaces'
 !include packages/gui/inventarium-gui.puml
-!include packages/gui/inventarium-gui-sequitur.puml
-!include packages/no-lines/inventarium-gui-mercator.puml
-!include packages/gui/inventarium-gui-admob.puml
+'!include packages/gui/inventarium-gui-sequitur.puml
+'!include packages/no-lines/inventarium-gui-mercatus.puml
+'!include packages/gui/inventarium-gui-admob.puml
 
 'Bussines logic'
 !include packages/core/inventarium-core.puml
-!include packages/core/inventarium-sequitur.puml
-!include packages/no-lines/inventarium-mercator.puml
-!include packages/core/inventarium-admob.puml
+''!include packages/core/inventarium-sequitur.puml
+!include packages/no-lines/inventarium-mercatus.puml
+''!include packages/core/inventarium-admob.puml
 
 'Implementation'
-inventariumServiceInterface <|-- inventariumMercatorServiceClass
-inventariumServiceInterface <|-- inventariumSequiturServiceClass
-inventariumServiceInterface <|-- inventariumAdmobServiceClass
+'inventariumServiceInterface <|-- inventariumMercatusServiceClass
+'inventariumServiceInterface <|-- inventariumSequiturServiceClass
+'inventariumServiceInterface <|-- inventariumAdmobServiceClass
 
 ' Distribution'
 'External dependencies'
 ionicNativeAdmob <|-- inventariumAdmobServiceClass
 
-AppModule <|-- inventariumGuiMercatorClass
-AppModule <|-- inventariumGuiSequiturClass
+'AppModule <|-- inventariumGuiMercatusClass
+'AppModule <|-- inventariumGuiSequiturClass
 AppModule <|-- inventariumGuiAdmobClass
 
+ AppModule <|-- "@inventarium/forma"
 @enduml

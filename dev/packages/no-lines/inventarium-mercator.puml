@@ -1,9 +1,0 @@
-@startuml
-package "@inventarium/mercator" as inventariumMercator {
-
-  class "InventariumMercatorService" as inventariumMercatorServiceClass {}
-
-  class "Client" as client { }
-}
-
-@enduml
