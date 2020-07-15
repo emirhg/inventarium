@@ -1,6 +1,5 @@
 @startuml
 package "@inventarium/gui" as inventariumGuiPackage #lightgreen {
-  !include ../core/inventarium-core.puml
   class "AlertError" as alertErrorHandler <<Injectable, ErrorHandler>> {
       + handleEror(error <<Error>)
   }
@@ -30,9 +29,9 @@ package "@inventarium/gui" as inventariumGuiPackage #lightgreen {
   }
 
 
-  class "InventariumApp" as inventariumGuiClass <<NgModule>> {  }
+  class "AppModule" as AppModule <<NgModule>> {  }
 
-  inventariumGuiConfiguration o-- inventariumGuiClass
+  inventariumGuiConfiguration o-- AppModule
   inventariumGuiConfiguration -* alertErrorHandler
 }
 @enduml

@@ -1,14 +1,18 @@
 @startuml
+'Internal dependencies
+!include packages/scanner/inventarium-scanner.puml
+!include packages/catalog/inventarium-catalog.puml
+
 ' User interfaces'
 !include packages/gui/inventarium-gui.puml
 !include packages/gui/inventarium-gui-sequitur.puml
-!include packages/gui/inventarium-gui-mercator.puml
+!include packages/no-lines/inventarium-gui-mercator.puml
 !include packages/gui/inventarium-gui-admob.puml
 
 'Bussines logic'
 !include packages/core/inventarium-core.puml
 !include packages/core/inventarium-sequitur.puml
-!include packages/core/inventarium-mercator.puml
+!include packages/no-lines/inventarium-mercator.puml
 !include packages/core/inventarium-admob.puml
 
 'Implementation'
@@ -17,13 +21,11 @@ inventariumServiceInterface <|-- inventariumSequiturServiceClass
 inventariumServiceInterface <|-- inventariumAdmobServiceClass
 
 ' Distribution'
-
-
 'External dependencies'
-inventariumAdmobServiceClass --|> ionicNativeAdmob
+ionicNativeAdmob <|-- inventariumAdmobServiceClass
 
-inventariumGuiClass <|-- inventariumGuiMercatorClass
-inventariumGuiClass <|-- inventariumGuiSequiturClass
-inventariumGuiClass <|-- inventariumGuiAdmobClass
+AppModule <|-- inventariumGuiMercatorClass
+AppModule <|-- inventariumGuiSequiturClass
+AppModule <|-- inventariumGuiAdmobClass
 
 @enduml

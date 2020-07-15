@@ -1,0 +1,41 @@
+@startuml
+  rectangle "TendaEntity" as tenda #lightyellowEntity{
+    entity "TransactionEntity" as transactionEntity {
+      * output_guid: string
+      * output_type: number
+      * item_guid: number
+      * created_at: timestamp
+      input_guid: number
+      input_type: string
+      item_type: string
+      user_id: number
+    }
+
+    entity "ContainerEntity" as containerEntity {
+      * id: GUID
+      --
+      * type: string
+    }
+
+    entity "SimpleContainerEntity" as simpleContainerEntity {
+      * id: GUID
+      --
+      * description: string
+    }
+
+    entity "ItemEntity" as itemEntity {
+      * id: GUID
+      --
+      * product_guid: GUID
+      * description: string
+      barcodes: Array<Barcode>
+    }
+
+    transactionEntity }o--|| containerEntity
+    transactionEntity }o-|| itemEntity
+
+    containerEntity ||-o{ simpleContainerEntity
+    containerEntity ||-o{ itemEntity
+
+  }
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+  rectangle "FoodCatalog" #lightgrey {
+    entity "nutritionSpecifications" as nutritionSpecifications{
+      name: string
+      portion: number
+      portion_units: string
+      kcal: number
+      glucemic_index: number
+      daily_recomended_portions: number
+    }
+    specifications --|> nutritionSpecifications : <<uses>>
+  }
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+
+  rectangle Market{
+    entity "Position" as position{
+      * id: number
+      --
+      * item_id: number
+      * user_id: number
+      * status: string
+      * created_at: timestamp
+      * updated_at: timestamp
+      ask:  number
+      bid: number
+    }
+
+    entity "Basket" as basket {
+      * id: number
+      --
+      * user_id: number
+      * position_id: number
+      *
+    }
+  }
+@enduml

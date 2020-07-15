@@ -1,0 +1,36 @@
+@startuml
+
+!include ../core/forma.puml
+!include ../core/tenda.puml
+
+!include ../no-lines/merkator.puml
+package "@inventarium/contentus" as inventariumContentus <<NoLines>>{
+  note as contentusPackageDescription
+    Este paquete se encarga de guardar el contenido de un producto.
+    Provee los servicios necesarios para inyectarle los campos al formulario
+  end note
+  !include ./submitProduct.puml
+  !include ./product.puml
+
+  rectangle "FormBuilder" {
+    class "ProductContentComponent" as productContentComponent {
+      + Integer netContent
+      + String unitsName = "piezas"
+    }
+
+    object "ProductContentFormTemplate" as productContentFormTemplate {
+      <label> Contenido neto </label>
+      <input name="netContent" />
+      <input name="unitsName" holder="Unidades" />
+    }
+
+    object "ProductContentFormControl" as productContentFormControl <<FormControl>> {
+      precio: [0, Validators.required]
+      unitsName: ["parte(s)", Validators.required]
+    }
+  }
+
+  productContentComponent --* productContentFormTemplate
+  productContentComponent --* productContentFormControl
+}
+@enduml

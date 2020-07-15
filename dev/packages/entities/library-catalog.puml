@@ -1,0 +1,14 @@
+@startuml
+  rectangle LibraryCatalog #lightgrey {
+    entity "BookSpecifications" as bookSpecifications {
+      * id: number
+      --
+      * title: string
+      editorial: string
+      isbn: string
+      author: string
+      pages: number
+    }
+    specifications --|> bookSpecifications : <<uses>>
+  }
+@enduml

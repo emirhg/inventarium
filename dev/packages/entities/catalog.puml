@@ -1,0 +1,28 @@
+@startuml
+  rectangle Catalog #lightyellow {
+    entity "Attachments" as attachments {
+      * id: number
+      --
+      * mime-type: string
+      * value: HEX
+    }
+
+    entity "Product" as product {
+      * id: number
+      --
+      description: string
+      details: string
+      barcodes: Array<Barcode>
+      featuredAttachmentId: number <FK>
+    }
+
+    entity "Specifications" as specifications {
+      product_id: number
+      specification_name: string
+      specification_id: number
+    }
+
+    product ||--o| specifications
+    product ||--o{ attachments
+  }
+@enduml

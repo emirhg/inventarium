@@ -1,7 +1,7 @@
 @startuml
 
 package "@inventarium/gui-mercator" as inventariumGuiMercator {
-  !include ../core/inventarium-mercator.puml
+  !include ../no-lines/inventarium-mercator.puml
   package @inventarium/market {}
   package @inventarium/payment-gateway {}
 

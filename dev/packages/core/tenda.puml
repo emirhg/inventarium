@@ -1,0 +1,43 @@
+@startuml
+package "@inventarium/tenda" as inventariumTenda {
+  !include ../entities/tenda.puml
+
+  rectangle "BussinessLogic" as bussinesLogic {
+    class "Item" as item {
+      + String description
+      + Array<Barcode> barcodes
+      + Product product
+    }
+
+    class "Container" as container {
+      + GUID id
+      + String description
+      + String type
+    }
+
+    class "Transaction" as transaction {
+      + String output_guid
+      + Number output_type
+      + Number item_guid
+      + Timestamp created_at
+      + Number input_guid
+      + String input_type
+      + String item_type
+      + User user
+    }
+
+
+    transaction -|> transactionEntity
+    container -|> containerEntity
+    container -|> simpleContainerEntity
+    container -|> itemEntity
+    item -|> itemEntity
+
+    item o-- container
+    item *- transaction
+    transaction --* container
+
+    tagged <|-- item
+  }
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+package @submitProductPage #gold {
+  class ProductModule <<NgModule>> {}
+  class SubmitProductPage <<NgComponent, NgOnInit>> {}
+  class SubmitProductModalPage <<SubmitProductPage>> {}
+
+  FormControlFactory o-- SubmitProductPage
+}
+@enduml

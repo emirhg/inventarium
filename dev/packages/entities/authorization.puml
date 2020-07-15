@@ -1,0 +1,27 @@
+@startuml
+  rectangle "Authorization (OAuth2)" {
+    entity "Role" as role {
+      * id: number
+      --
+      * name: string
+    }
+
+    entity "Grant" as grant {
+      * id: number
+      --
+      * role_id: number
+      * scope: string
+      * method: string
+      * grant: boolean
+    }
+
+    entity "Access" as access {
+      * id: number
+      --
+      * role_id: number
+      * user_id: number
+    }
+
+    role }|-|{ access
+  }
+@enduml

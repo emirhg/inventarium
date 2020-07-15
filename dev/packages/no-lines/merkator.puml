@@ -1,0 +1,29 @@
+@startuml
+  package @inventarium/merkator {
+    class "Price" as price <<BaseEntity>> {
+      + GUID id
+      + Double value
+      + "Ask" | "Bid" type
+      + Date updated_at
+      + Date created_at
+    }
+
+    class "ProductPriceComponent" as productPriceComponent {
+      + Double suggestedPriceTag
+      + FormFactoryService formFactoryService <<Injector>>
+    }
+
+
+    object "ProductPriceFormTemplate" as productPriceFormTemplate {
+      <label> Precio </label>
+      <input name="precio" />
+    }
+
+    object "ProductPriceFormControl" as productPriceFormControl <<FormControl>> {
+      precio: [0, Validators.required]
+    }
+
+    productPriceComponent --* productPriceFormTemplate
+    productPriceComponent --* productPriceFormControl
+  }
+@enduml

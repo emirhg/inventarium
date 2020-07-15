@@ -1,0 +1,19 @@
+@startuml
+
+  rectangle NetworkCatalog {
+    entity "NetworkDeviceSpecifications" as networkDeviceSpecifications {
+      * id: number
+      --
+      * name: string
+      vendor: string
+      model: string
+      serial_number: string
+      m_code: string
+      part_number: string
+      mac_address: string
+      firmware_version: string
+      hardware_version: string
+    }
+    specifications --|> networkDeviceSpecifications : <<uses>>
+  }
+@enduml
