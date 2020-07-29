@@ -3,7 +3,7 @@
 !include packages/scanner/inventarium-scanner.puml
 !include packages/catalog/inventarium-catalog.puml
 !include packages/catalog/inventarium-contentus.puml
-!include packages/core/forma.puml
+!include packages/forma/forma.puml
 !include packages/no-lines/inventarium-mercatus.puml
 
 ' User interfaces'

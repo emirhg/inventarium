@@ -1,0 +1,48 @@
+@startuml
+  package "@inventarium/forma" <<Public>>{
+    note as formNote
+    "Forma" es el paquete encargado de generar plantillas de formularios
+    a partir de un objeto.
+      Crea un nuevo DynamicForm compuesto de un o DynamicFormGroup.
+      Cada DynamicFormGroup maneja la capa de presentación al usuario.
+      Por lo tanto, cada DynamicFormGroup
+      1. Captura de datos
+      2. Validación de entrada
+      3. Limpieza de buffer
+
+      "Angular forms doc:\nhttps://angular.io/api/forms/AbstractControl"
+    end note
+
+    class DynamicForm <<Directive>> {
+      + template
+      + ViewContainerRef viewContainerRef
+      + @Input formName
+      + @Output objectData
+    }
+
+    class DynamicFormFactoryService{
+      + DynamicFormGroups[] dynamicFormGroups
+      + appendDynamicFormGroup(String formName, DynamicFormGroup formGroup)
+      + DynamicFormTemplate getDynamicForm(String formName)
+    }
+
+    class DynamicFormField<T> <<Element>> {
+      + String label
+      + String type
+      + String value
+      + String key
+      + Boolean valid
+    }
+
+    interface DynamicFormGroup <<Component>> {
+      + DynamycFormField formField
+      + valid
+      + onSubmit()
+      + clearBuffer()
+    }
+
+    class DynamicFormComponent <<Component>> {
+      + template
+    }
+  }
+@enduml

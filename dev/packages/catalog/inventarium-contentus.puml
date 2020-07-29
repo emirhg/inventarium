@@ -1,6 +1,6 @@
 @startuml
 
-!include ../core/forma.puml
+!include ../forma/forma.puml
 !include ../core/tenda.puml
 !include ./inventarium-catalog.puml
 
